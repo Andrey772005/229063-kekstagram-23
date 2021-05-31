@@ -6,13 +6,14 @@ function randomNumber(min, max) {
 console.log(randomNumber(0, 100));
 
 
-function maxStringLength(someComment, maxlength: 140) {
-  if (maxlength.length > 14) {  //???????????
+function maxStringLength(someComment, isValidMaxStringLength) {
+  isValidMaxStringLength = 140;
+  if ( isValidMaxStringLength.length > 140) {
+    console.log('Комментарий слишком длинный');
     return true;
-    //console.log('Комментарий слишком длинный');
   } else {
+    console.log('Введите ещё символы');
     return false;
-    //console.log('Введите ещё символы'); // Не знаю какой результат выдать в консоль, поэтому решил так)
   }
 }
 
