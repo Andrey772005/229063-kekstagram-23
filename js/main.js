@@ -11,4 +11,3 @@ console.log(randomNumber(20, 30));
 const MAX_STRING_LENGTH = 140;
 const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
   someComment.length <= maxLength;
-
