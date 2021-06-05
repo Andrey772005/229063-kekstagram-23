@@ -1,24 +1,14 @@
-const MAX_STRING_LENGTH = 140;
-
 function randomNumber(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-
-  if (min <= Math.random()) {
-    console.log('Введено неверное число');
-  } else {
-  console.log('Число в нужном диапазоне');
+  if (min === max || max < min) {
+    return min;
   }
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+console.log(randomNumber(20, 30));
 
-randomNumber(1, 3);
-
-
+const MAX_STRING_LENGTH = 140;
 const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
-  someComment.length > maxLength;
-
-const string = 'Some too long comment';
-console.log(isValidMaxStringLength(string));
-
+  someComment.length <= maxLength;
 
