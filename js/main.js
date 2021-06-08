@@ -13,7 +13,7 @@ const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
   someComment.length <= maxLength;
 
 
-// Начало здесь
+// const DESCRIPTION_ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
 
 function DESCRIPTION_ID (min = 1, max = 25) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
@@ -21,7 +21,7 @@ function DESCRIPTION_ID (min = 1, max = 25) {
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
-}
+};
 
 const PHOTO_URL = [
   url: 'photos/1.jpg',
@@ -87,13 +87,17 @@ function LIKES (min = 15, max = 200) {
   return Math.floor(result);
 };
 
-function USER_ID (min = 1, max = 10000) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
+// Комментарии
 
-  return Math.floor(result);
-}; 
+const USER_ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// function USER_ID (min = 1, max = 10000) {
+//   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+//   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
+//   const result = Math.random() * (upper - lower + 1) + lower;
+
+//   return Math.floor(result);
+// }; 
 
 const AVATAR = [
   url: 'img/avatar-1.svg',
@@ -121,5 +125,15 @@ const NAMES [
   'Михаил',
   'Роман',
 ];
+
+const createComment = () => {
+  return {
+    userId: USER_ID[_.random(0, USER_ID.length - 1)],
+    avatar: AVATAR[_.random(0, AVATAR.length - 1)],
+    message: MESSAGE[_.random(0, MESSAGE.length - 1)],
+    name: NAMES[_.random(0, NAMES.length - 1)],
+  };
+};
+console.log(createComment());
 
 
