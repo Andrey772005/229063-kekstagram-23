@@ -5,50 +5,40 @@ function randomNumber (min, max) {
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
-}
-console.log(randomNumber(0, 100));
+};
+
 
 const MAX_STRING_LENGTH = 140;
 const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
   someComment.length <= maxLength;
 
 
-// const DESCRIPTION_ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
-
-function DESCRIPTION_ID (min = 1, max = 25) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-
-  return Math.floor(result);
-};
-
 const PHOTO_URL = [
-  url: 'photos/1.jpg',
-  url: 'photos/2.jpg',
-  url: 'photos/3.jpg',
-  url: 'photos/4.jpg',
-  url: 'photos/5.jpg',
-  url: 'photos/6.jpg',
-  url: 'photos/7.jpg',
-  url: 'photos/8.jpg',
-  url: 'photos/9.jpg',
-  url: 'photos/10.jpg',
-  url: 'photos/11.jpg',
-  url: 'photos/12.jpg',
-  url: 'photos/13.jpg',
-  url: 'photos/14.jpg',
-  url: 'photos/15.jpg',
-  url: 'photos/16.jpg',
-  url: 'photos/17.jpg',
-  url: 'photos/18.jpg',
-  url: 'photos/19.jpg',
-  url: 'photos/20.jpg',
-  url: 'photos/21.jpg',
-  url: 'photos/22.jpg',
-  url: 'photos/23.jpg',
-  url: 'photos/24.jpg',
-  url: 'photos/25.jpg',
+  'photos/1.jpg',
+  'photos/2.jpg',
+  'photos/3.jpg',
+  'photos/4.jpg',
+  'photos/5.jpg',
+  'photos/6.jpg',
+  'photos/7.jpg',
+  'photos/8.jpg',
+  'photos/9.jpg',
+  'photos/10.jpg',
+  'photos/11.jpg',
+  'photos/12.jpg',
+  'photos/13.jpg',
+  'photos/14.jpg',
+  'photos/15.jpg',
+  'photos/16.jpg',
+  'photos/17.jpg',
+  'photos/18.jpg',
+  'photos/19.jpg',
+  'photos/20.jpg',
+  'photos/21.jpg',
+  'photos/22.jpg',
+  'photos/23.jpg',
+  'photos/24.jpg',
+  'photos/25.jpg',
 ];
 
 const DESCRIPTION = [
@@ -79,33 +69,13 @@ const DESCRIPTION = [
   'Сафари',
 ];
 
-function LIKES (min = 15, max = 200) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-
-  return Math.floor(result);
-};
-
-// Комментарии
-
-const USER_ID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// function USER_ID (min = 1, max = 10000) {
-//   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-//   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-//   const result = Math.random() * (upper - lower + 1) + lower;
-
-//   return Math.floor(result);
-// }; 
-
 const AVATAR = [
-  url: 'img/avatar-1.svg',
-  url: 'img/avatar-2.svg',
-  url: 'img/avatar-3.svg',
-  url: 'img/avatar-4.svg',
-  url: 'img/avatar-5.svg',
-  url: 'img/avatar-6.svg',
+  'img/avatar-1.svg',
+  'img/avatar-2.svg',
+  'img/avatar-3.svg',
+  'img/avatar-4.svg',
+  'img/avatar-5.svg',
+  'img/avatar-6.svg',
 ];
 
 const MESSAGE = [
@@ -117,7 +87,7 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const NAMES [
+const NAMES = [
   'Иван',
   'Алексей',
   'Дмитрий',
@@ -126,14 +96,41 @@ const NAMES [
   'Роман',
 ];
 
-const createComment = () => {
-  return {
-    userId: USER_ID[_.random(0, USER_ID.length - 1)],
-    avatar: AVATAR[_.random(0, AVATAR.length - 1)],
-    message: MESSAGE[_.random(0, MESSAGE.length - 1)],
-    name: NAMES[_.random(0, NAMES.length - 1)],
+const objectGenerator = () => {
+  const photoDescription = {
+    id: randomNumber(1, 25),
+    url: PHOTO_URL[randomNumber(0, PHOTO_URL.length - 1)],
+    description: DESCRIPTION[randomNumber(0, DESCRIPTION.length - 1)],
+    likes: randomNumber(15, 200),
+    comments: commentsGenerator(randomNumber(0, 10)),
   };
+
+  return photoDescription;
 };
-console.log(createComment());
 
+const commentsGenerator = (quantityComments) => {
+  const comments = [];
 
+  for (let i = 0; i < quantityComments; i++) {
+    comments[i] = {
+      userId: i,
+      avatar: 'img/avatar-' + randomNumber(1, 6) + '.svg',
+      message: MESSAGE.slice(0, randomNumber(0, MESSAGE.length - 1)).join(''),
+      name: NAMES[randomNumber(0, NAMES.length - 1)],
+    };
+  }
+
+  return comments;
+};
+
+const dataGenerator = (quantityObject = 25) => {
+  const data = [];
+
+  for (let i = 0; i < quantityObject; i++) {
+    data[i] = objectGenerator();
+  }
+
+  return data;
+};
+
+console.log(dataGenerator());
