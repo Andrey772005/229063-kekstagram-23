@@ -96,6 +96,26 @@ const NAMES = [
   'Роман',
 ];
 
+// Функция из демо
+
+const uniqueRandomNumberGenerator = (min, max) => {
+  const previousValues = [];
+
+  return () => {
+    let currentValue = randomNumber(min, max);
+    // if (previousValues.length >= (max - min + 1)) {
+    //   throw new Error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
+    // }
+    while (previousValues.includes(currentValue)) {
+      currentValue = randomNumber(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue();
+  };
+};
+
+//////////////////////////
+
 const objectGenerator = () => {
   const photoDescription = {
     id: randomNumber(1, 25),
