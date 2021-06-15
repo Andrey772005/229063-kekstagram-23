@@ -119,32 +119,27 @@ const uniqueRandomNumberGenerator = (min, max) => {
 // Функция из интернета
 
 function generateArrayRandomNumber (min, max) {
-    var totalNumbers = max - min + 1,
+  let totalNumbers = max - min + 1,
+    arrayTotalNumbers = [],
+    arrayRandomNumbers = [],
+    tempRandomNumber;
 
-        arrayTotalNumbers = [],
-        arrayRandomNumbers = [],
-        tempRandomNumber;
- 
-    while (totalNumbers--) {
-        arrayTotalNumbers.push(totalNumbers + min);
-    }
+  while (totalNumbers--) {
+    arrayTotalNumbers.push(totalNumbers + min);
+  }
 
-    while (arrayTotalNumbers.length) {
-        tempRandomNumber = Math.round(Math.random() * (arrayTotalNumbers.length - 1));
-        arrayRandomNumbers.push(arrayTotalNumbers[tempRandomNumber]);
-        arrayTotalNumbers.splice(tempRandomNumber, 1);
-    }
+  while (arrayTotalNumbers.length) {
+    tempRandomNumber = Math.round(Math.random() * (arrayTotalNumbers.length - 1));
+    arrayRandomNumbers.push(arrayTotalNumbers[tempRandomNumber]);
+    arrayTotalNumbers.splice(tempRandomNumber, 1);
+  }
 
-    return arrayRandomNumbers;
+  return arrayRandomNumbers;
 }
 
-//  Нужно учесть что в диапазоне участвуют и минимальное и максимальное число
-//  тоесть если задать (0, 100) то на выходе получим массив из 101-го числа
-//  от 1 до 100 и плюс число 0
+generateArrayRandomNumber();
 
-alert(generateArrayRandomNumber(1, 25));
-
-///////////////////////////////////////
+//////////////////////////////
 
 const objectGenerator = () => {
   const photoDescription = {
