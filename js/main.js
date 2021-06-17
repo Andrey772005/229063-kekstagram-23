@@ -144,7 +144,7 @@ generateArrayRandomNumber();
 const objectGenerator = () => {
   const photoDescription = {
     id: randomNumber(1, 25),
-    url: PHOTO_URL[randomNumber(0, PHOTO_URL.length - 1)],
+    url: 'photos/' + randomNumber(1, 25) + 'jpg',
     description: DESCRIPTION[randomNumber(0, DESCRIPTION.length - 1)],
     likes: randomNumber(15, 200),
     comments: commentsGenerator(randomNumber(0, 10)),
