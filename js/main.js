@@ -5,12 +5,12 @@ function randomNumber (min, max) {
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
-};
+}
 
 
-const MAX_STRING_LENGTH = 140;
-const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
-  someComment.length <= maxLength;
+// const MAX_STRING_LENGTH = 140;
+// const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
+//   someComment.length <= maxLength;
 
 
 const PHOTO_URL = [
@@ -94,56 +94,66 @@ const NAMES = [
   'Вячеслав',
   'Михаил',
   'Роман',
+  'Виталий',
+  'Андрей',
+  'Антон',
+  'Станислав',
+  'Богдан',
+  'Руслан',
+  'Юрий',
 ];
 
-// Функция из демо
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const temp = array[i];
+    const randomIndex  = randomNumber(0, array.length - 1);
+    array[i] = array[randomIndex];
+    array[randomIndex] = temp;
+  }
+
+  return array;
+};
+
 
 const uniqueRandomNumberGenerator = (min, max) => {
   const previousValues = [];
 
   return () => {
     let currentValue = randomNumber(min, max);
-    // if (previousValues.length >= (max - min + 1)) {
-    //   throw new Error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
-    // }
+
+    if (previousValues.length >= (max - min + 1)) {
+      throw new Error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
+    }
     while (previousValues.includes(currentValue)) {
       currentValue = randomNumber(min, max);
     }
     previousValues.push(currentValue);
-    return currentValue();
+    return currentValue;
   };
 };
 
-//////////////////////////
+const commentsGenerator = (quantityComments) => {
+  const comments = [];
 
-// Функция из интернета
+  const generateUniqUserId = uniqueRandomNumberGenerator(0, quantityComments - 1);
 
-function generateArrayRandomNumber (min, max) {
-  let totalNumbers = max - min + 1,
-    arrayTotalNumbers = [],
-    arrayRandomNumbers = [],
-    tempRandomNumber;
-
-  while (totalNumbers--) {
-    arrayTotalNumbers.push(totalNumbers + min);
+  for (let i = 0; i < quantityComments; i++) {
+    const userId = generateUniqUserId();
+    comments[i] = {
+      userId: userId,
+      avatar: `img/avatar-${  randomNumber(1, 6)  }.svg`,
+      message: shuffle(MESSAGE).slice(0, randomNumber(1, MESSAGE.length - 1)).join(' '),
+      name: NAMES[randomNumber(0, NAMES.length - 1)],
+    };
   }
 
-  while (arrayTotalNumbers.length) {
-    tempRandomNumber = Math.round(Math.random() * (arrayTotalNumbers.length - 1));
-    arrayRandomNumbers.push(arrayTotalNumbers[tempRandomNumber]);
-    arrayTotalNumbers.splice(tempRandomNumber, 1);
-  }
+  return comments;
+};
 
-  return arrayRandomNumbers;
-}
 
-generateArrayRandomNumber();
-
-//////////////////////////////
-
-const objectGenerator = () => {
+const objectGenerator = (id) => {
   const photoDescription = {
-    id: randomNumber(1, 25),
+    id,
     url: 'photos/' + randomNumber(1, 25) + 'jpg',
     description: DESCRIPTION[randomNumber(0, DESCRIPTION.length - 1)],
     likes: randomNumber(15, 200),
@@ -153,29 +163,17 @@ const objectGenerator = () => {
   return photoDescription;
 };
 
-const commentsGenerator = (quantityComments) => {
-  const comments = [];
 
-  for (let i = 0; i < quantityComments; i++) {
-    comments[i] = {
-      userId: i,
-      avatar: 'img/avatar-' + randomNumber(1, 6) + '.svg',
-      message: MESSAGE.slice(0, randomNumber(0, MESSAGE.length - 1)).join(''),
-      name: NAMES[randomNumber(0, NAMES.length - 1)],
-    };
-  }
-
-  return comments;
-};
-
-const dataGenerator = (quantityObject = 25) => {
+const dataGenerator = (quantityObject) => {
   const data = [];
+  const generateUniqUserId = uniqueRandomNumberGenerator(0, quantityObject - 1);
 
   for (let i = 0; i < quantityObject; i++) {
-    data[i] = objectGenerator();
+    const id = generateUniqUserId();
+    data[i] = objectGenerator(id);
   }
 
   return data;
 };
 
-console.log(dataGenerator());
+console.log(dataGenerator(25));
