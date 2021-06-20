@@ -1,5 +1,5 @@
 
-function randomNumber (min, max) {
+export function randomNumber (min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -7,12 +7,12 @@ function randomNumber (min, max) {
   return Math.floor(result);
 }
 
-const MAX_STRING_LENGTH = 140;
-const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
+export const MAX_STRING_LENGTH = 140;
+export const isValidMaxStringLength = (someComment, maxLength = MAX_STRING_LENGTH) =>
   someComment.length <= maxLength;
 
 
-const shuffle = (array) => {
+export const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const temp = array[i];
     const randomIndex  = randomNumber(0, array.length - 1);
@@ -24,7 +24,7 @@ const shuffle = (array) => {
 };
 
 
-const uniqueRandomNumberGenerator = (min, max) => {
+export const uniqueRandomNumberGenerator = (min, max) => {
   const previousValues = [];
 
   return () => {
@@ -41,6 +41,5 @@ const uniqueRandomNumberGenerator = (min, max) => {
   };
 };
 
-export {randomNumber, MAX_STRING_LENGTH, uniqueRandomNumberGenerator};
 
 

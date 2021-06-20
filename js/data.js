@@ -1,7 +1,7 @@
-import {randomNumber, MAX_STRING_LENGTH, shuffle, uniqueRandomNumberGenerator,} from './utils.js';
+import {randomNumber, MAX_STRING_LENGTH, shuffle, uniqueRandomNumberGenerator} from './utils.js';
 import {DESCRIPTION, MESSAGE, NAMES} from './massive.js';
 
-const commentsGenerator = (quantityComments) => {
+export const commentsGenerator = (quantityComments) => {
   const comments = [];
 
   const generateUniqUserId = uniqueRandomNumberGenerator(0, quantityComments - 1);
@@ -20,7 +20,7 @@ const commentsGenerator = (quantityComments) => {
 };
 
 
-const objectGenerator = (id) => {
+export const objectGenerator = (id) => {
   const photoDescription = {
     id,
     url: 'photos/' + randomNumber(1, 25) + 'jpg',
@@ -33,7 +33,7 @@ const objectGenerator = (id) => {
 };
 
 
-const dataGenerator = (quantityObject) => {
+export const dataGenerator = (quantityObject) => {
   const data = [];
   const generateUniqUserId = uniqueRandomNumberGenerator(0, quantityObject - 1);
 
@@ -47,4 +47,3 @@ const dataGenerator = (quantityObject) => {
 
 console.log(dataGenerator(25));
 
-export {commentsGenerator, objectGenerator, dataGenerator};
