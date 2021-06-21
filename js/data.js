@@ -1,5 +1,5 @@
 import {randomNumber, MAX_STRING_LENGTH, shuffle, uniqueRandomNumberGenerator} from './utils.js';
-import {DESCRIPTION, MESSAGE, NAMES} from './massive.js';
+import {DESCRIPTION, MESSAGE, NAMES} from './constants.js';
 
 export const commentsGenerator = (quantityComments) => {
   const comments = [];
