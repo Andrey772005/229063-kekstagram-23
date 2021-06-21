@@ -45,5 +45,4 @@ export const dataGenerator = (quantityObject) => {
   return data;
 };
 
-console.log(dataGenerator(25));
 
