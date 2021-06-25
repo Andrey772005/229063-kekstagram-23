@@ -1,20 +1,23 @@
 import {dataGenerator} from './data.js';
 
-const userPhotoCollection = document.querySelector('.pictures');
-const userPhoto = userPhotoCollection.querySelector('.img-upload');
+const userPhotoContainer = document.querySelector('.pictures');
 const userPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const userPhotoFragment = document.createDocumentFragment();
 
 const userRandomPhotoCollection = dataGenerator();
 
-const userPhotoFragment = document.createDocumentFragment();
-
 userRandomPhotoCollection.forEach(({url, likes, comments}) => {
-  const userRandomPhoto = userPhotoTemplate.cloneNode(true);
-  userRandomPhoto.querySelector('.picture__img').fill = url;
-  userRandomPhoto.querySelector('.picture__likes').fill = likes;
-  userRandomPhoto.querySelector('.picture__comments').textContent = comments;
-  userPhotoFragment.appendChild(userRandomPhoto);
+  const userPhoto = userPhotoTemplate.cloneNode(true);
+  const imgNode = userPhoto.querySelector('.picture_img');
+  const commentsNode = userPhoto.querySelector('.picture_comments');
+  const likesNode = userPhoto.querySelector('.picture__likes');
+
+  imgNode.src = url;
+  commentsNode.textContent = likes;
+  likesNode.textContent = comments.length;
+
+  userPhotoFragment.appendChild(userPhoto);
+
 });
 
-userPhotoCollection.appendChild(userPhotoTemplate);
-
+userPhotoContainer.appendChild(userPhotoFragment);
