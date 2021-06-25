@@ -23,7 +23,7 @@ export const commentsGenerator = (quantityComments) => {
 export const objectGenerator = (id) => {
   const photoDescription = {
     id,
-    url: 'photos/' + randomNumber(1, 25) + 'jpg',
+    url: `photos/${ randomNumber(1, 25) }.jpg`,
     description: DESCRIPTION[randomNumber(0, DESCRIPTION.length - 1)],
     likes: randomNumber(15, 200),
     comments: commentsGenerator(randomNumber(0, 10)),
@@ -33,7 +33,7 @@ export const objectGenerator = (id) => {
 };
 
 
-export const dataGenerator = (quantityObject) => {
+export const dataGenerator = (quantityObject = 25) => {
   const data = [];
   const generateUniqUserId = uniqueRandomNumberGenerator(0, quantityObject - 1);
 
@@ -43,6 +43,4 @@ export const dataGenerator = (quantityObject) => {
   }
 
   return data;
-};
-
-
+}
