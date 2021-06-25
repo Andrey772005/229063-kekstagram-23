@@ -1,4 +1,5 @@
 import {dataGenerator} from './data.js';
+import { uniqueRandomNumberGenerator } from './utils.js';
 
 const userPhotoContainer = document.querySelector('.pictures');
 const userPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -8,8 +9,8 @@ const userRandomPhotoCollection = dataGenerator();
 
 userRandomPhotoCollection.forEach(({url, likes, comments}) => {
   const userPhoto = userPhotoTemplate.cloneNode(true);
-  const imgNode = userPhoto.querySelector('.picture_img');
-  const commentsNode = userPhoto.querySelector('.picture_comments');
+  const imgNode = userPhoto.querySelector('.picture__img');
+  const commentsNode = userPhoto.querySelector('.picture__comments');
   const likesNode = userPhoto.querySelector('.picture__likes');
 
   imgNode.src = url;

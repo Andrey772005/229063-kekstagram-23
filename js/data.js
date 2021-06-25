@@ -23,7 +23,7 @@ export const commentsGenerator = (quantityComments) => {
 export const objectGenerator = (id) => {
   const photoDescription = {
     id,
-    url: `photos/${ randomNumber(1, 25) }.jpg`,    // Изменил 25.06.21
+    url: `photos/${ randomNumber(1, 25) }.jpg`,
     description: DESCRIPTION[randomNumber(0, DESCRIPTION.length - 1)],
     likes: randomNumber(15, 200),
     comments: commentsGenerator(randomNumber(0, 10)),
