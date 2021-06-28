@@ -1,5 +1,4 @@
 import {dataGenerator} from './data.js';
-import { uniqueRandomNumberGenerator } from './utils.js';
 
 const userPhotoContainer = document.querySelector('.pictures');
 const userPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -22,3 +21,5 @@ userRandomPhotoCollection.forEach(({url, likes, comments}) => {
 });
 
 userPhotoContainer.appendChild(userPhotoFragment);
+
+export {userPhotoContainer};
