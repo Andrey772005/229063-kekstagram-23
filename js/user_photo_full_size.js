@@ -1,7 +1,6 @@
 import {userPhotoContainer} from './user_photo.js'
 
 const PHOTO_SIZE = 35;
-const COMMENTS_STEP = 5;
 
 const photos = userPhotoContainer.querySelectorAll('.picture');
 const bigPicture = document.querySelector('.big-picture');
@@ -14,8 +13,9 @@ const socialComments = bigPicture.querySelector('.social__comments');
 const commentFragment = document.createDocumentFragment();
 
 
-const photoListClick = (photoItem, {url, likes, comments, description}) => {
+const photoListClick = ({url, likes, comments, description}) => {
   const photoClick = () => {
+
     bigPicture.classList.remove('hidden');
     document.body.classList.add('modal-open');
 
@@ -51,3 +51,12 @@ const photoListClick = (photoItem, {url, likes, comments, description}) => {
     };
   };
 };
+
+
+document.addEventListener('keydown', function(evt) {
+  const key = evt.key;
+  if (key === "Escape" || evt.key === 'Esc') {
+      window.close();
+  }
+});
+
