@@ -1,3 +1,4 @@
+/* eslint-disable id-length */
 
 export function randomNumber (min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
@@ -41,5 +42,4 @@ export const uniqueRandomNumberGenerator = (min, max) => {
   };
 };
 
-
-
+export const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
