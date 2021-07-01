@@ -12,6 +12,12 @@ const bigPictureCommentsLoader = bigPicture.querySelector('.comments-loader');
 const bigPictureSocialCaption = bigPicture.querySelector('.social__caption');
 const socialCommentCount = bigPicture.querySelector('.social__comment-count');
 const socialComments = bigPicture.querySelector('.social__comments');
+const commentsInput = bigPicture.querySelector('.social__footer-text');
+
+const imageUpload = document.querySelector('.img-upload__overlay');
+const textDescription = imageUpload.querySelector('.text__description');
+const uploadFile = document.querySelector('#upload-file');
+
 const commentFragment = document.createDocumentFragment();
 
 
@@ -63,5 +69,17 @@ bigPicture.addEventListener('click', () => {
     }
   });
 });
+
+export const closeModal = () => {
+  bigPicture.classList.add('hidden');
+  imageUpload.classList.add('hidden');
+  socialCommentCount.classList.remove('hidden');
+  bigPictureCommentsLoader.classList.remove('hidden');
+  document.body.classList.remove('modal-open');
+  commentsInput.value = '';
+  uploadFile.value = '';
+  textDescription.value = '';
+  textHashtag.value = '';
+};
 
 

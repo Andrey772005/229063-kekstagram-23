@@ -1,4 +1,4 @@
-import {randomNumber, MAX_STRING_LENGTH, shuffle, uniqueRandomNumberGenerator} from './utils.js';
+import {randomNumber, isValidMaxStringLength ,shuffle, uniqueRandomNumberGenerator} from './utils.js';
 import {DESCRIPTION, MESSAGE, NAMES} from './constants.js';
 
 export const commentsGenerator = (quantityComments) => {
@@ -6,6 +6,7 @@ export const commentsGenerator = (quantityComments) => {
 
   const generateUniqUserId = uniqueRandomNumberGenerator(0, quantityComments - 1);
 
+  // eslint-disable-next-line id-length
   for (let i = 0; i < quantityComments; i++) {
     const userId = generateUniqUserId();
     comments[i] = {
