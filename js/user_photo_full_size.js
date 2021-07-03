@@ -1,4 +1,3 @@
-import {userPhotoContainer} from './user_photo.js'
 import {isEscEvent} from './utils.js';
 
 const PHOTO_SIZE = 35;
@@ -21,9 +20,9 @@ const uploadFile = document.querySelector('#upload-file');
 const commentFragment = document.createDocumentFragment();
 
 
-const photoListClick = ({url, likes, comments, description}) => {
-  const photoClick = () => {
+const bigPhotoClick = ({url, likes, comments, description}) => {
 
+  bigPicture.classList.remove('hidden');
     bigPictureImage.src = url;
     bigPictureLikesCount.textContent = likes;
     bigPictureCommentsCount.textContent = comments.length;
@@ -54,11 +53,11 @@ const photoListClick = ({url, likes, comments, description}) => {
 
       socialComments.appendChild(photoComments);
     };
-  };
+
 };
 
 bigPicture.addEventListener('click', () => {
-  bigPicture.classList.remove('hidden');
+
   socialCommentCount.classList.add('hidden');
   bigPictureCommentsLoader.classList.add('hidden');
 
