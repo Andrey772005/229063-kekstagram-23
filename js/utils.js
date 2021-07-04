@@ -1,4 +1,3 @@
-import {closeModal} from './user_photo_full_size.js';
 
 export function randomNumber (min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
@@ -44,15 +43,15 @@ export const uniqueRandomNumberGenerator = (min, max) => {
 export const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
 
-const uploadFile = document.querySelector('#upload-file');
-const uploadCansel = document.querySelector('#upload-cancel');
-const photoUpload = document.querySelector('.img-upload__overlay');
+// const uploadFile = document.querySelector('#upload-file');
+// const uploadCansel = document.querySelector('#upload-cancel');
+// const photoUpload = document.querySelector('.img-upload__overlay');
 
-const uploadPhotoUser = () => {
-  photoUpload.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-  uploadCansel.addEventListener('click', closeModal);
-  document.addEventListener('keydown', isEscEvent);
-};
+// const uploadPhotoUser = () => {
+//   photoUpload.classList.remove('hidden');
+//   document.body.classList.add('modal-open');
+//   uploadCansel.addEventListener('click', closeModal);
+//   document.addEventListener('keydown', isEscEvent);
+// };
 
-uploadFile.addEventListener('change', uploadPhotoUser);
+// uploadFile.addEventListener('change', uploadPhotoUser);
