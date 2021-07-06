@@ -17,7 +17,32 @@ const userComment = socialComments.querySelector('.social__comment');
 const userPicture = userComment.querySelector('.social__picture');
 const userText = userComment.querySelector('.social__text');
 const body = document.querySelector('body');
-const commentFragment = document.createDocumentFragment();
+
+const addComments = (photoComments) => {
+  const commentFragment = document.createDocumentFragment();
+
+  photoComments.forEach(({avatar, name, message}) => {
+    const commentBlock = document.createElement('li');
+    const commentPicture = document.createElement('img');
+    const commentText = document.createElement('p');
+
+    commentBlock.classList.add('social__comment');
+    commentPicture.classList.add('social__picture');
+    commentText.classList.add('social__text');
+    commentPicture.src = avatar;
+    commentPicture.alt = name;
+    commentPicture.width = PHOTO_SIZE;
+    commentPicture.height = PHOTO_SIZE;
+    commentText.textContent = message;
+
+    commentBlock.appendChild(commentPicture);
+    commentBlock.appendChild(commentText);
+    commentFragment.appendChild(commentBlock);
+  });
+
+  socialComments.appendChild(commentFragment);
+
+};
 
 
 const changeDataBigPicture = (photoData) => {
@@ -27,7 +52,7 @@ const changeDataBigPicture = (photoData) => {
   bigPictureSocialCaption.textContent = photoData.description;
 
   socialComments.innerHTML = '';
-
+  addComments(photoData.comments); // Не забывать вызывать функцию!!!!
 };
 
 const showModal = () => {
@@ -64,29 +89,3 @@ const bigPictureKeydownHandler = (evt) => {
 
 bigPicture.addEventListener('click', bigPictureClickHandler);
 document.addEventListener('keydown', bigPictureKeydownHandler);
-
-
-const addComments = (photoComments) => {
-
-  photoComments.forEach(({avatar, name, message}) => {
-    const commentBlock = document.createElement('li');
-    const commentPicture = document.createElement('img');
-    const commentText = document.createElement('p');
-
-    commentBlock.classList.add('social__comment');
-    commentPicture.classList.add('social__picture');
-    commentText.classList.add('social__text');
-    commentPicture.src = avatar;
-    commentPicture.alt = name;
-    commentPicture.width = PHOTO_SIZE;
-    commentPicture.height = PHOTO_SIZE;
-    commentText.textContent = message;
-
-    commentBlock.appendChild(commentPicture);
-    commentBlock.appendChild(commentText);
-    commentFragment.appendChild(commentBlock);
-  });
-
-  socialComments.appendChild(commentFragment);
-
-};
