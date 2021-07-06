@@ -60,3 +60,5 @@ const validationFormComments = (evt) => {
 };
 
 textComments.addEventListener('input', validationFormComments);
+
+export {validationForm, validationFormComments};

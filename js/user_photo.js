@@ -17,8 +17,8 @@ userRandomPhotoCollection.forEach((photoObj) => {
   userPhoto.addEventListener('click', handler);
 
   imgNode.src = photoObj.url;
-  commentsNode.textContent = photoObj.likes;
-  likesNode.textContent = photoObj.comments.length;
+  commentsNode.textContent = photoObj.comments.length;
+  likesNode.textContent = photoObj.likes;
 
   userPhotoFragment.appendChild(userPhoto);
 

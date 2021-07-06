@@ -16,8 +16,8 @@ const socialComments = bigPicture.querySelector('.social__comments');
 const userComment = socialComments.querySelector('.social__comment');
 const userPicture = userComment.querySelector('.social__picture');
 const userText = userComment.querySelector('.social__text');
-
 const body = document.querySelector('body');
+const commentFragment = document.createDocumentFragment();
 
 
 const changeDataBigPicture = (photoData) => {
@@ -25,6 +25,8 @@ const changeDataBigPicture = (photoData) => {
   bigPictureLikesCount.textContent = photoData.likes;
   bigPictureCommentsCount.textContent = photoData.comments.length;
   bigPictureSocialCaption.textContent = photoData.description;
+
+  socialComments.innerHTML = '';
 
 };
 
@@ -43,8 +45,6 @@ export const userPhotoClickHandler = (photoObj) => (evt) => {
   showModal();
   changeDataBigPicture(photoObj);
 
-  socialComments.innerHTML = '';
-
 };
 
 const bigPictureClickHandler = (evt) => {
@@ -60,13 +60,14 @@ const bigPictureKeydownHandler = (evt) => {
   if (isEscEvent(evt)) {
     closeModal();
   }
-}
+};
 
 bigPicture.addEventListener('click', bigPictureClickHandler);
 document.addEventListener('keydown', bigPictureKeydownHandler);
 
 
 const addComments = (photoComments) => {
+
   photoComments.forEach(({avatar, name, message}) => {
     const commentBlock = document.createElement('li');
     const commentPicture = document.createElement('img');
@@ -79,9 +80,8 @@ const addComments = (photoComments) => {
     commentPicture.alt = name;
     commentPicture.width = PHOTO_SIZE;
     commentPicture.height = PHOTO_SIZE;
-
-
     commentText.textContent = message;
+
     commentBlock.appendChild(commentPicture);
     commentBlock.appendChild(commentText);
     commentFragment.appendChild(commentBlock);
