@@ -13,22 +13,30 @@ const ERROR_NO_REPEAT = 'Хэштег не может быть использо�
 
 const textHashtags = document.querySelector('.text__hashtags');
 const textComments = document.querySelector('.text__description');
+const imageEditingForm = document.querySelector('.image-upload__overlay');
+const body = document.querySelector('body');
+
+const showForm = () => {
+  imageEditingForm.classList.remove('.hidden')
+  body.classList.add('.modal-open');
+};
 
 
 const validationForm = (evt) => {
+
   if (textHashtags.value !== '') {
     const hashtag = textHashtags.value.toLowerCase().trim().split(' ').filter((hashtags) => hashtags);
     const hashtagsSet = new Set(hashtag);
 
     hashtag.forEach((hashtags) => {
       if (!HASHTAG_SYMBOLS.test(hashtags)) {
+        evt.preventDefault();
         textHashtags.setCustomValidity(TEXT_VALIDATE);
         textHashtags.style.outlineColor = INVALID_INPUT;
-        evt.preventDefault();
       } else if (hashtag.length !== hashtagsSet.size) {
+        evt.preventDefault();
         textHashtags.setCustomValidity(ERROR_NO_REPEAT);
         textHashtags.style.outlineColor = INVALID_INPUT;
-        evt.preventDefault();
       } else {
         textHashtags.setCustomValidity('');
         textHashtags.style.outlineColor = VALID_INPUT;
@@ -61,4 +69,11 @@ const validationFormComments = (evt) => {
 
 textComments.addEventListener('input', validationFormComments);
 
-export {validationForm, validationFormComments};
+const showFormHandler = (evt) => {
+  evt.preventDefault();
+  showForm();
+  validationForm();
+  validationFormComments();
+};
+
+export {validationForm, validationFormComments, showFormHandler};
