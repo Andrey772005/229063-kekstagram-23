@@ -1,4 +1,5 @@
-import {isValidMaxStringLength} from './utils.js';
+import {isEscEvent, isValidMaxStringLength} from './utils.js';
+
 
 const HASHTAG_SYMBOLS = /^#[A-za-zА-Яа-я0-9]{1,19}$/;
 const MAXIMUM_HASHTAGS = 5;
@@ -11,13 +12,21 @@ const TEXT_VALIDATE = `Хэш-тег начинается с символа # и
 Хэш-теги должны разделяться пробелами`;
 const ERROR_NO_REPEAT = 'Хэштег не может быть использован дважды';
 
-const textHashtags = document.querySelector('.text__hashtags');
-const textComments = document.querySelector('.text__description');
-const imageEditingForm = document.querySelector('.image-upload__overlay');
 const body = document.querySelector('body');
+const imageUploadForm = document.querySelector('.img-upload__form');
+const imageEditingForm = imageUploadForm.querySelector('.image-upload__overlay');
+const scaleControlSmaller = imageEditingForm.querySelector('.scale__control--smaller');
+const scaleControlBigger = imageEditingForm.querySelector('.scale__control--bigger');
+const imageUploadPreview = imageEditingForm.querySelector('.img-upload__preview');
+const image = imageEditingForm.querySelector('img');
+const imageUploadInput = imageUploadForm.querySelector('.img-upload__input');
+const uploadFile = imageUploadForm.querySelector('#upload-file');
+const closeUploadFile = imageUploadForm.querySelector('#upload-cancel');
+const textHashtags = imageUploadForm.querySelector('.text__hashtags');
+const textComments = imageUploadForm.querySelector('.text__description');
 
-const showForm = () => {
-  imageEditingForm.classList.remove('.hidden')
+const showModal = () => {
+  imageEditingForm.classList.remove('hidden');
   body.classList.add('.modal-open');
 };
 
@@ -69,11 +78,15 @@ const validationFormComments = (evt) => {
 
 textComments.addEventListener('input', validationFormComments);
 
-const showFormHandler = (evt) => {
-  evt.preventDefault();
-  showForm();
-  validationForm();
-  validationFormComments();
+
+export const showPhotoFormHandler = (evt) => {
+  //document.addEventListener('keydown', isEscEvent);
+  showModal();
+  // textHashtags.addEventListener('input', validationForm);
+  // textComments.addEventListener('input', validationFormComments);
 };
 
-export {validationForm, validationFormComments, showFormHandler};
+uploadFile.addEventListener('change', showPhotoFormHandler);
+
+
+export {validationForm, validationFormComments};
