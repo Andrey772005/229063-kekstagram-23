@@ -25,11 +25,6 @@ const closeUploadFile = imageUploadForm.querySelector('#upload-cancel');
 const textHashtags = imageUploadForm.querySelector('.text__hashtags');
 const textComments = imageUploadForm.querySelector('.text__description');
 
-const showModal = () => {
-  imageEditingForm.classList.remove('hidden');
-  body.classList.add('.modal-open');
-};
-
 
 const validationForm = (evt) => {
 
@@ -78,15 +73,26 @@ const validationFormComments = (evt) => {
 
 textComments.addEventListener('input', validationFormComments);
 
+const fileReader = () => {
+  const reader = new FileReader();
+  reader.onload = function() {
+  previewImage.src = reader.result;
+  };
+};
 
-export const showPhotoFormHandler = (evt) => {
+const showModal = () => {
+  imageEditingForm.classList.remove('hidden');
+  document.body.classList.add('.modal-open');
+};
+
+const showPhotoFormHandler = (evt) => {
   //document.addEventListener('keydown', isEscEvent);
   showModal();
+  fileReader();
   // textHashtags.addEventListener('input', validationForm);
   // textComments.addEventListener('input', validationFormComments);
 };
 
 uploadFile.addEventListener('change', showPhotoFormHandler);
-
 
 export {validationForm, validationFormComments};
