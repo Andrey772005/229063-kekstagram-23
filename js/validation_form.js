@@ -15,10 +15,10 @@ const ERROR_NO_REPEAT = 'Хэштег не может быть использо�
 const body = document.querySelector('body');
 const imageUploadForm = document.querySelector('.img-upload__form');
 const imageEditingForm = imageUploadForm.querySelector('.image-upload__overlay');
-const scaleControlSmaller = imageEditingForm.querySelector('.scale__control--smaller');
-const scaleControlBigger = imageEditingForm.querySelector('.scale__control--bigger');
-const imageUploadPreview = imageEditingForm.querySelector('.img-upload__preview');
-const image = imageEditingForm.querySelector('img');
+const imageUploadScale = imageUploadForm.querySelector('.img-upload__scale');
+const scaleControlSmaller = imageUploadScale.querySelector('.scale__control--smaller');
+const scaleControlBigger = imageUploadScale.querySelector('.scale__control--bigger');
+const imageUploadPreview = imageUploadForm.querySelector('.img-upload__preview img');
 const imageUploadInput = imageUploadForm.querySelector('.img-upload__input');
 const uploadFile = imageUploadForm.querySelector('#upload-file');
 const closeUploadFile = imageUploadForm.querySelector('#upload-cancel');
@@ -74,9 +74,11 @@ const validationFormComments = (evt) => {
 textComments.addEventListener('input', validationFormComments);
 
 const fileReader = () => {
+  const file = imageUploadInput.files[0];
   const reader = new FileReader();
+  reader.readAsDataURL(file);
   reader.onload = function() {
-  previewImage.src = reader.result;
+    image.src = reader.result;
   };
 };
 
@@ -86,13 +88,13 @@ const showModal = () => {
 };
 
 const showPhotoFormHandler = (evt) => {
-  //document.addEventListener('keydown', isEscEvent);
   showModal();
   fileReader();
-  // textHashtags.addEventListener('input', validationForm);
-  // textComments.addEventListener('input', validationFormComments);
+  document.addEventListener('keydown', isEscEvent);
+  textHashtags.addEventListener('input', validationForm);
+  textComments.addEventListener('input', validationFormComments);
 };
 
-uploadFile.addEventListener('change', showPhotoFormHandler);
+// .addEventListener('change', showPhotoFormHandler);
 
-export {validationForm, validationFormComments};
+export {showPhotoFormHandler};
