@@ -14,7 +14,7 @@ const ERROR_NO_REPEAT = 'Хэштег не может быть использо�
 
 const body = document.querySelector('body');
 const imageUploadForm = document.querySelector('.img-upload__form');
-const imageEditingForm = imageUploadForm.querySelector('.image-upload__overlay');
+const imageEditingForm = imageUploadForm.querySelector('.img-upload__overlay');
 const imageUploadScale = imageUploadForm.querySelector('.img-upload__scale');
 const scaleControlSmaller = imageUploadScale.querySelector('.scale__control--smaller');
 const scaleControlBigger = imageUploadScale.querySelector('.scale__control--bigger');
@@ -84,10 +84,34 @@ const fileReader = () => {
 
 const showModal = () => {
   imageEditingForm.classList.remove('hidden');
-  document.body.classList.add('.modal-open');
+  body.classList.add('.modal-open');
 };
 
+const closeModal = () => {
+  imageEditingForm.classList.add('hidden');
+  body.classList.remove('.modal-open');
+};
+
+const photoFormClickHandler = (evt) => {
+  evt.preventDefault();
+
+  if (evt.target.classList.contains('cancel')) {
+    closeModal();
+  }
+};
+
+const photoFormKeydownHandler = (evt) => {
+  evt.preventDefault();
+  if (isEscEvent(evt)) {
+    closeModal();
+  }
+};
+
+imageUploadForm.addEventListener('click', photoFormClickHandler);
+document.addEventListener('keydown', photoFormKeydownHandler);
+
 const showPhotoFormHandler = (evt) => {
+  evt.preventDefault();
   showModal();
   fileReader();
   document.addEventListener('keydown', isEscEvent);
@@ -95,6 +119,6 @@ const showPhotoFormHandler = (evt) => {
   textComments.addEventListener('input', validationFormComments);
 };
 
-// .addEventListener('change', showPhotoFormHandler);
+imageUploadForm.addEventListener('change', showPhotoFormHandler);
 
 export {showPhotoFormHandler};
