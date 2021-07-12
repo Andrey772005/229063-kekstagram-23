@@ -78,7 +78,7 @@ const fileReader = () => {
   const reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onload = function() {
-    image.src = reader.result;
+    imageUploadPreview.src = reader.result;
   };
 };
 
@@ -94,7 +94,6 @@ const closeModal = () => {
 
 const photoFormClickHandler = (evt) => {
   evt.preventDefault();
-
   if (evt.target.classList.contains('cancel')) {
     closeModal();
   }
