@@ -22,6 +22,7 @@ const imageUploadPreview = imageUploadForm.querySelector('.img-upload__preview i
 const imageUploadInput = imageUploadForm.querySelector('.img-upload__input');
 const uploadFile = imageUploadForm.querySelector('#upload-file');
 const closeUploadFile = imageUploadForm.querySelector('#upload-cancel');
+const imageUploadCancel = imageEditingForm.querySelector('.img-upload__cancel');
 const textHashtags = imageUploadForm.querySelector('.text__hashtags');
 const textComments = imageUploadForm.querySelector('.text__description');
 
@@ -106,14 +107,15 @@ const photoFormKeydownHandler = (evt) => {
   }
 };
 
-imageUploadForm.addEventListener('click', photoFormClickHandler);
+closeUploadFile.addEventListener('click', photoFormClickHandler);
 document.addEventListener('keydown', photoFormKeydownHandler);
 
 const showPhotoFormHandler = (evt) => {
   evt.preventDefault();
   showModal();
   fileReader();
-  document.addEventListener('keydown', isEscEvent);
+  photoFormKeydownHandler();
+  photoFormClickHandler();
   textHashtags.addEventListener('input', validationForm);
   textComments.addEventListener('input', validationFormComments);
 };
