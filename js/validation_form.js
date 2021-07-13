@@ -23,8 +23,8 @@ const imageUploadInput = imageUploadForm.querySelector('.img-upload__input');
 const uploadFile = imageUploadForm.querySelector('#upload-file');
 const closeUploadFile = imageUploadForm.querySelector('#upload-cancel');
 const imageUploadCancel = imageEditingForm.querySelector('.img-upload__cancel');
-const textHashtags = imageUploadForm.querySelector('.text__hashtags');
-const textComments = imageUploadForm.querySelector('.text__description');
+const textHashtags = imageEditingForm.querySelector('.text__hashtags');
+const textComments = imageEditingForm.querySelector('.text__description');
 
 
 const validationForm = (evt) => {
@@ -100,6 +100,7 @@ const closeModal = () => {
   imageEditingForm.classList.add('hidden');
   body.classList.remove('.modal-open');
   resetForm();
+  isEscEvent();
 };
 
 const photoFormClickHandler = (evt) => {
@@ -109,23 +110,21 @@ const photoFormClickHandler = (evt) => {
   }
 };
 
-const photoFormKeydownHandler = (evt) => {
-  evt.preventDefault();
-  if (isEscEvent(evt)) {
-    closeModal();
-  }
-};
+// const photoFormKeydownHandler = (evt) => {
+//   if (isEscEvent(evt)) {
+//     closeModal();
+//   }
+// };
 
 
 closeUploadFile.addEventListener('click', photoFormClickHandler);
-document.addEventListener('keydown', photoFormKeydownHandler);
+// document.addEventListener('keydown', photoFormKeydownHandler);
 
 const showPhotoFormHandler = (evt) => {
   evt.preventDefault();
   showModal();
   fileReader();
-
-  photoFormKeydownHandler();
+  // photoFormKeydownHandler();
   photoFormClickHandler();
   textHashtags.addEventListener('input', validationForm);
   textComments.addEventListener('input', validationFormComments);
