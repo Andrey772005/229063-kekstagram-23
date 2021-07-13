@@ -83,6 +83,14 @@ const fileReader = () => {
   };
 };
 
+const resetForm = () => {
+  imageUploadPreview.src = 'img/upload-default-image.jpg';
+  uploadFile.value = '';
+  textHashtags.value ='';
+  textComments.value = '';
+};
+
+
 const showModal = () => {
   imageEditingForm.classList.remove('hidden');
   body.classList.add('.modal-open');
@@ -91,6 +99,7 @@ const showModal = () => {
 const closeModal = () => {
   imageEditingForm.classList.add('hidden');
   body.classList.remove('.modal-open');
+  resetForm();
 };
 
 const photoFormClickHandler = (evt) => {
@@ -107,6 +116,7 @@ const photoFormKeydownHandler = (evt) => {
   }
 };
 
+
 closeUploadFile.addEventListener('click', photoFormClickHandler);
 document.addEventListener('keydown', photoFormKeydownHandler);
 
@@ -114,6 +124,7 @@ const showPhotoFormHandler = (evt) => {
   evt.preventDefault();
   showModal();
   fileReader();
+
   photoFormKeydownHandler();
   photoFormClickHandler();
   textHashtags.addEventListener('input', validationForm);
