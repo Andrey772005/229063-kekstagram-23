@@ -1,4 +1,5 @@
-import {isValidMaxStringLength} from './utils.js';
+import {isEscEvent, isValidMaxStringLength} from './utils.js';
+
 
 const HASHTAG_SYMBOLS = /^#[A-za-zА-Яа-я0-9]{1,19}$/;
 const MAXIMUM_HASHTAGS = 5;
@@ -11,24 +12,36 @@ const TEXT_VALIDATE = `Хэш-тег начинается с символа # и
 Хэш-теги должны разделяться пробелами`;
 const ERROR_NO_REPEAT = 'Хэштег не может быть использован дважды';
 
-const textHashtags = document.querySelector('.text__hashtags');
-const textComments = document.querySelector('.text__description');
+const body = document.querySelector('body');
+const imageUploadForm = document.querySelector('.img-upload__form');
+const imageEditingForm = imageUploadForm.querySelector('.img-upload__overlay');
+const imageUploadScale = imageUploadForm.querySelector('.img-upload__scale');
+const scaleControlSmaller = imageUploadScale.querySelector('.scale__control--smaller');
+const scaleControlBigger = imageUploadScale.querySelector('.scale__control--bigger');
+const imageUploadPreview = imageUploadForm.querySelector('.img-upload__preview img');
+const imageUploadInput = imageUploadForm.querySelector('.img-upload__input');
+const uploadFile = imageUploadForm.querySelector('#upload-file');
+const closeUploadFile = imageUploadForm.querySelector('#upload-cancel');
+const imageUploadCancel = imageEditingForm.querySelector('.img-upload__cancel');
+const textHashtags = imageEditingForm.querySelector('.text__hashtags');
+const textComments = imageEditingForm.querySelector('.text__description');
 
 
 const validationForm = (evt) => {
+
   if (textHashtags.value !== '') {
     const hashtag = textHashtags.value.toLowerCase().trim().split(' ').filter((hashtags) => hashtags);
     const hashtagsSet = new Set(hashtag);
 
     hashtag.forEach((hashtags) => {
       if (!HASHTAG_SYMBOLS.test(hashtags)) {
+        evt.preventDefault();
         textHashtags.setCustomValidity(TEXT_VALIDATE);
         textHashtags.style.outlineColor = INVALID_INPUT;
-        evt.preventDefault();
       } else if (hashtag.length !== hashtagsSet.size) {
+        evt.preventDefault();
         textHashtags.setCustomValidity(ERROR_NO_REPEAT);
         textHashtags.style.outlineColor = INVALID_INPUT;
-        evt.preventDefault();
       } else {
         textHashtags.setCustomValidity('');
         textHashtags.style.outlineColor = VALID_INPUT;
@@ -61,4 +74,54 @@ const validationFormComments = (evt) => {
 
 textComments.addEventListener('input', validationFormComments);
 
-export {validationForm, validationFormComments};
+const fileReader = () => {
+  const file = imageUploadInput.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function() {
+    imageUploadPreview.src = reader.result;
+  };
+};
+
+const resetForm = () => {
+  imageUploadPreview.src = 'img/upload-default-image.jpg';
+  uploadFile.value = '';
+  textHashtags.value ='';
+  textComments.value = '';
+};
+
+
+const showModal = () => {
+  imageEditingForm.classList.remove('hidden');
+  body.classList.add('.modal-open');
+};
+
+const closeModal = () => {
+  imageEditingForm.classList.add('hidden');
+  body.classList.remove('.modal-open');
+  resetForm();
+  isEscEvent();
+};
+
+const photoFormClickHandler = (evt) => {
+  evt.preventDefault();
+  if (evt.target.classList.contains('cancel')) {
+    closeModal();
+  }
+};
+
+closeUploadFile.addEventListener('click', photoFormClickHandler);
+
+const showPhotoFormHandler = (evt) => {
+  evt.preventDefault();
+  showModal();
+  fileReader();
+  // photoFormKeydownHandler();
+  photoFormClickHandler();
+  textHashtags.addEventListener('input', validationForm);
+  textComments.addEventListener('input', validationFormComments);
+};
+
+imageUploadForm.addEventListener('change', showPhotoFormHandler);
+
+export {showPhotoFormHandler};
