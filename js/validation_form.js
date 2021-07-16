@@ -110,15 +110,7 @@ const photoFormClickHandler = (evt) => {
   }
 };
 
-// const photoFormKeydownHandler = (evt) => {
-//   if (isEscEvent(evt)) {
-//     closeModal();
-//   }
-// };
-
-
 closeUploadFile.addEventListener('click', photoFormClickHandler);
-// document.addEventListener('keydown', photoFormKeydownHandler);
 
 const showPhotoFormHandler = (evt) => {
   evt.preventDefault();

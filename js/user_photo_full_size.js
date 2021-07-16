@@ -81,7 +81,6 @@ const bigPictureClickHandler = (evt) => {
 };
 
 const bigPictureKeydownHandler = (evt) => {
-  evt.preventDefault();
   if (isEscEvent(evt)) {
     closeModal();
   }
