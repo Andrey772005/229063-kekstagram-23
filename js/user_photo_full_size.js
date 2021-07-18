@@ -61,7 +61,6 @@ const showCommentsClick = () => {
 
 commentLoader.addEventListener('click', showCommentsClick);
 
-
 const changeDataBigPicture = (photoData) => {
   bigPictureImage.src = photoData.url;
   bigPictureLikesCount.textContent = photoData.likes;
