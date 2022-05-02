@@ -1,4 +1,4 @@
-const QUANTITY_OBJ = 26;
+const QUANTITY_OBJ = 25;
 
 const DESCRIPTION = [
   'Лучшее фото',

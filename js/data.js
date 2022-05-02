@@ -1,6 +1,5 @@
 import {QUANTITY_OBJ, DESCRIPTION, MESSAGE, NAMES} from './constant.js';
-// eslint-disable-next-line no-unused-vars
-import {getRandomPositiveInteger, uniqueRandomNumberGenerator, checkStringLength} from './utils.js';
+import {getRandomPositiveInteger, getUniqueNumber} from './utils.js';
 
 const shuffleArray = (array) => {
   // eslint-disable-next-line id-length
@@ -31,19 +30,20 @@ const commentsGenerator = (quantityComments) => {
 
 
 const photoObj = () => {
-  const descriptionId = getRandomPositiveInteger(0, 25);
-  const url = `photos/${ getRandomPositiveInteger (0, 25) }.jpg`;
+  const descriptionId = getRandomPositiveInteger(1, 25);
+  const url = `photos/${ getUniqueNumber() }.jpg`;
   const description = DESCRIPTION[getRandomPositiveInteger(0, DESCRIPTION.length - 1)];
-  const likes = uniqueRandomNumberGenerator(15, 200);
+  const likes = getRandomPositiveInteger(15, 200);
 
   return {
     id: descriptionId,
     url: url,
     description: description,
-    likes: likes(),
+    likes: likes,
     comments: commentsGenerator(getRandomPositiveInteger(0, 10)),
   };
 };
 
-// eslint-disable-next-line no-unused-vars
-export const photoObjects = new Array(QUANTITY_OBJ).fill(null).map(() => photoObj());
+const photoObjects = new Array(QUANTITY_OBJ).fill(null).map(() => photoObj());
+
+export {photoObjects};

@@ -8,25 +8,26 @@ function getRandomPositiveInteger (min, max) {
 
 const uniqueRandomNumberGenerator = (min, max) => {
   const previousValues = [];
-
   return () => {
-    let currentValue = getRandomPositiveInteger(min, max);
+    let currentValue = _.random(min, max);
 
     if (previousValues.length >= (max - min + 1)) {
-      throw new Error(`Перебраны все числа из диапазона от ${  min  } до ${  max }`);
+      throw new Error(`Перебраны все числа из диапазона от ${ min } до ${ max }`);
     }
     while (previousValues.includes(currentValue)) {
-      currentValue = getRandomPositiveInteger(min, max);
+      currentValue = _.random(min, max);
     }
     previousValues.push(currentValue);
     return currentValue;
   };
 };
 
+const getUniqueNumber = uniqueRandomNumberGenerator(1, 25);
+
 // eslint-disable-next-line no-unused-vars
-function checkStringLength (string, length) {
+function checkStringLength(string, length) {
   return string.length <= length;
 }
 
-export {getRandomPositiveInteger, uniqueRandomNumberGenerator, checkStringLength};
+export {getRandomPositiveInteger, getUniqueNumber};
 
