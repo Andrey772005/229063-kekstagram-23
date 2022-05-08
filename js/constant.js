@@ -1,4 +1,5 @@
 const QUANTITY_OBJ = 25;
+const FOTO_SIZE = 35;
 
 const DESCRIPTION = [
   'Лучшее фото',
@@ -34,5 +35,5 @@ const NAMES = [
   'Юрий',
 ];
 
-export {QUANTITY_OBJ, DESCRIPTION, MESSAGE, NAMES};
+export {QUANTITY_OBJ, DESCRIPTION, MESSAGE, NAMES, FOTO_SIZE};
 

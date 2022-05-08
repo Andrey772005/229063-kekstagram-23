@@ -28,7 +28,6 @@ const commentsGenerator = (quantityComments) => {
   return comments;
 };
 
-
 const photoObj = () => {
   const descriptionId = getRandomPositiveInteger(1, 25);
   const url = `photos/${ getUniqueNumber() }.jpg`;
@@ -36,14 +35,14 @@ const photoObj = () => {
   const likes = getRandomPositiveInteger(15, 200);
 
   return {
-    id: descriptionId,
     url: url,
+    id: descriptionId,
     description: description,
     likes: likes,
     comments: commentsGenerator(getRandomPositiveInteger(0, 10)),
   };
 };
 
-const photoObjects = new Array(QUANTITY_OBJ).fill(null).map(() => photoObj());
+const photoObjects = () => new Array(QUANTITY_OBJ).fill(null).map(() => photoObj());
 
 export {photoObjects};

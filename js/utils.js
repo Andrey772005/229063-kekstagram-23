@@ -6,6 +6,18 @@ function getRandomPositiveInteger (min, max) {
   return Math.floor(result);
 }
 
+const randomInt = (min, max) => {
+  if (min < 0 || max < 0) {
+    return -1;
+  }
+  if (max < min) {
+    [min, max] = [max, min];
+  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+randomInt(1, 15);
+
 const uniqueRandomNumberGenerator = (min, max) => {
   const previousValues = [];
   return () => {
@@ -22,6 +34,9 @@ const uniqueRandomNumberGenerator = (min, max) => {
   };
 };
 
+// eslint-disable-next-line no-unused-vars
+const randomArray = (array) => array[randomInt(0, array.length - 1)];
+
 const getUniqueNumber = uniqueRandomNumberGenerator(1, 25);
 
 // eslint-disable-next-line no-unused-vars
@@ -29,5 +44,7 @@ function checkStringLength(string, length) {
   return string.length <= length;
 }
 
-export {getRandomPositiveInteger, getUniqueNumber};
+const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+export {getRandomPositiveInteger, getUniqueNumber, isEscEvent};
 
