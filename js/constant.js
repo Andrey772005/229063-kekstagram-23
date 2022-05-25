@@ -33,6 +33,7 @@ const NAMES = [
   'Богдан',
   'Руслан',
   'Юрий',
+  'Сергей',
 ];
 
 export {QUANTITY_OBJ, DESCRIPTION, MESSAGE, NAMES, FOTO_SIZE};

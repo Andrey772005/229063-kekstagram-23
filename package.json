@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "lodash.assign": "^4.2.0"
+    "lodash.assign": "^4.2.0",
+    "nouislider": "^15.6.0"
   }
 }

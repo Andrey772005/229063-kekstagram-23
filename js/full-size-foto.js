@@ -2,7 +2,9 @@ import {isEscEvent} from './utils.js';
 import {FOTO_SIZE} from './constant.js';
 
 const body = document.querySelector('body');
+// eslint-disable-next-line no-unused-vars
 const pictures = document.querySelector('.pictures');
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = document.querySelector('.big-picture__cancel');
 
@@ -50,13 +52,8 @@ const bigPictureOpen = () => {
   body.classList.add('modal-open');
   socialCommentCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
-  pictures.addEventListener('click', bigPictureOpen);
   document.addEventListener('keydown', onPopupEscKeyDown);
 };
-
-pictures.addEventListener('click', () => {
-  bigPictureOpen();
-});
 
 const bigPictureClose = () => {
   bigPicture.classList.add('hidden');
@@ -77,7 +74,7 @@ const bigPictureShow = (url, likes, comments, description) => {
   photoComments(comments);
 };
 
-const userPhotoClick = (url, likes,comments, description) => (evt) => {
+const userPhotoClick = (url, likes, comments, description) => (evt) => {
   evt.preventDefault();
   bigPictureOpen();
   bigPictureShow(url, likes, comments, description);
