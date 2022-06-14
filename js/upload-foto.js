@@ -156,3 +156,5 @@ slider.noUiSlider.on('update', (_, handle, unencoded) => {
       imageEffectValue.value);
   }
 });
+
+export {upload, cancelUpload};

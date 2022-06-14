@@ -1,14 +1,14 @@
-import {photoObjects} from './data.js';
+// import {photoObjects} from './data.js';
 import {userPhotoClick} from './full-size-foto.js';
 
 const pictures = document.querySelector('.pictures');
 const userPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const renderUserPhoto = photoObjects();
+// const renderUserPhoto = photoObjects();
 
-const photoObject = () => {
+const photoObjects = (renderImg) => {
   const userPhotoFragment = document.createDocumentFragment();
-  renderUserPhoto.forEach(({url, likes, comments, description}) => {
+  renderImg.forEach(({url, likes, comments, description}) => {
     const photo = userPhotoTemplate.cloneNode(true);
     photo.querySelector('.picture__img').src = url;
     photo.querySelector('.picture__likes').textContent = likes;
@@ -23,4 +23,6 @@ const photoObject = () => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const renderPhoto = photoObject();
+// const renderPhoto = photoObjects();
+
+export {photoObjects};
