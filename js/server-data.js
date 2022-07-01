@@ -7,6 +7,7 @@ const body = document.querySelector('body');
 const error = document.querySelector('#error').content.querySelector('.error');
 const success = document.querySelector('#success').content.querySelector('.success');
 const imageUploadForm = document.querySelector('.img-upload__form');
+const imageFilters = document.querySelector('.img-filters');
 const errorFragment = document.createDocumentFragment();
 const successFragment = document.createDocumentFragment();
 
@@ -25,6 +26,7 @@ fetch('https://23.javascript.pages.academy/kekstagram/data')
   .then((response) => response.json())
   .then((photos) => {
     photoObjects(photos);
+    imageFilters.classList.remove('img-filters--inactive');
   });
 
 
@@ -121,7 +123,7 @@ const sendForm = () => {
   });
 };
 
-export {sendForm};
+export {sendForm, errorMessage};
 
 // const URL = 'https://23.javascript.pages.academy/kekstagram';
 // //
@@ -137,4 +139,4 @@ export {sendForm};
 // };
 // const data = await getData();
 //
-// imageUploadForm.addEventListener('click', data);
+

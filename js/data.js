@@ -45,4 +45,4 @@ const photoObj = () => {
 
 const photoObjects = () => new Array(QUANTITY_OBJ).fill(null).map(() => photoObj());
 
-export {photoObjects};
+export {photoObjects, shuffleArray};

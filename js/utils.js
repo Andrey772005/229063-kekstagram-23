@@ -46,5 +46,21 @@ function checkStringLength(string, length) {
 
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-export {getRandomPositiveInteger, getUniqueNumber, isEscEvent};
+// Debounce
+const INTERVAL = 500;
+
+const debounce = (callback) => {
+  let timeout = null;
+
+  return (...args) => {
+    if (timeout) {
+      window.clearTimeout(timeout);
+    }
+    timeout = window.setTimeout(() => {
+      callback(...args);
+    }, INTERVAL);
+  };
+};
+
+export {getRandomPositiveInteger, getUniqueNumber, isEscEvent, debounce};
 
