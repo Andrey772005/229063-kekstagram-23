@@ -5,7 +5,7 @@
   "description": "Личный проект «Кекстаграм» от HTML Academy",
   "repository": {
     "type": "git",
-    "url": "git@github.com:htmlacademy-javascript/229063-kekstagram-23.git"
+    "url": "git+ssh://git@github.com/htmlacademy-javascript/229063-kekstagram-23.git"
   },
   "bugs": {
     "url": "https://github.com/htmlacademy-javascript/229063-kekstagram-23/issues"
@@ -32,5 +32,8 @@
     "lodash": "^4.17.21",
     "lodash.assign": "^4.2.0",
     "nouislider": "^15.6.0"
-  }
+  },
+  "homepage": "https://github.com/htmlacademy-javascript/229063-kekstagram-23#readme",
+  "main": "index.js",
+  "author": ""
 }
